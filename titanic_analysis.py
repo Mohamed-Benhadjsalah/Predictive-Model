@@ -50,15 +50,17 @@ plt.title("Age Distribution by survival status")
 plt.xlabel("Age")
 plt.ylabel("Count")
 plt.show()
-# Logistic regression as a predictive model
-# Split the data
+# Predictive_Modeling
+
+ # Logistic regression as a predictive model
+     # Split the data
 x=df.drop('Survived',axis=1)
 y=df['Survived']
 x_train,x_test,y_train,y_test=train_test_split(x,y,test_size=0.2,random_state=65)
-# Train the model
+     # Train the model
 model =LogisticRegression(max_iter=1000)
 model.fit(x_train,y_train)
-# Evaluate the model
+     # Evaluate the model
 y_pred =model.predict(x_test)
 accuracy1=accuracy_score(y_test,y_pred)
 print(accuracy1)
@@ -67,13 +69,17 @@ plt.title("Confusion Matrix")
 plt.xlabel("Predicted")
 plt.ylabel("Actual")
 plt.show()
-# Randomforest model
+
+ # Randomforest model
+     # Split the data
 x1=df.drop('Survived',axis=1)
 y=df['Survived']
 x1_train,x1_test,y1_train,y1_test=train_test_split(x1,y,test_size=0.2,random_state=42)
+     # Train the model
 rf=RandomForestClassifier(n_estimators=100, random_state=42)
 rf.fit(x1_train,y1_train)
 y_pred1=rf.predict(x1_test)
+     # Evaluate the model
 accuracy2=accuracy_score(y1_test,y_pred1)
 print(accuracy2)
 print("\nConfusion Matrix:\n", confusion_matrix(y1_test, y_pred1))
@@ -87,7 +93,7 @@ importances = rf.feature_importances_
 feat_importances = pd.Series(importances, index=x1.columns)
 feat_importances = feat_importances.sort_values(ascending=False)
 
-# Plot
+
 plt.figure(figsize=(10,6))
 feat_importances.plot(kind='bar')
 plt.title('Feature Importances from Random Forest')
